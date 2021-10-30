@@ -1,3 +1,5 @@
+import os
+
 from app import app
 from flask import jsonify, request, send_file, after_this_request
 
@@ -20,8 +22,8 @@ def make_screenshot():
     CropScreenshot(filename=filename)
 
     @after_this_request
-    def remove():
-        RemoveScreenshot(filename=filename)
+    def remove(name=filename):
+        os.remove(name)
 
     return send_file(f"../{filename}")
 

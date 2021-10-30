@@ -1,5 +1,4 @@
 import datetime
-import subprocess
 
 from PIL import Image
 from selenium import webdriver
@@ -52,10 +51,3 @@ class CropScreenshot:
             (x1, y1, x2, y2)
         )
         cropped.save(filename)
-
-
-class RemoveScreenshot:
-    def __init__(self, filename):
-        subprocess.Popen(
-            f"sleep 5 && rm {filename}"
-        )
