@@ -1,4 +1,6 @@
 import os
+from multiprocessing import Process
+
 
 from app import app
 from flask import jsonify, request, send_file
@@ -21,7 +23,7 @@ def make_screenshot():
     filename = MakeScreenshot(url=url).filename
     CropScreenshot(filename=filename)
 
-    file_handle = open(filename, "r")
+    file_handle = open(filename, "rb")
 
     def stream_and_remove_file():
         yield from file_handle
