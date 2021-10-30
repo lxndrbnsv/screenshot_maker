@@ -1,9 +1,7 @@
-import time
-
 from app import app
-from flask import jsonify, request, send_file
+from flask import jsonify, request, send_file, after_this_request
 
-from app.modules.screenshot import MakeScreenshot, CropScreenshot
+from app.modules.screenshot import MakeScreenshot, CropScreenshot, RemoveScreenshot
 
 
 @app.route("/")
@@ -20,6 +18,10 @@ def make_screenshot():
 
     filename = MakeScreenshot(url=url).filename
     CropScreenshot(filename=filename)
+
+    @after_this_request
+    def remove():
+        RemoveScreenshot(filename=filename)
 
     return send_file(f"../{filename}")
 

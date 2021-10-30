@@ -1,5 +1,5 @@
 import datetime
-from io import BytesIO
+import subprocess
 
 from PIL import Image
 from selenium import webdriver
@@ -8,7 +8,13 @@ from selenium.webdriver.chrome.options import Options
 
 class MakeScreenshot:
     def __init__(self, url):
-        filename = url.replace("https://", "").replace(".", "_").replace("/", "_") + ".png"
+        filename = url.replace(
+            "https://", ""
+        ).replace(
+            ".", "_"
+        ).replace(
+            "/", "_"
+        ) + str(round(datetime.datetime.now().timestamp())) + ".png"
 
         options = Options()
         options.headless = True
@@ -46,3 +52,10 @@ class CropScreenshot:
             (x1, y1, x2, y2)
         )
         cropped.save(filename)
+
+
+class RemoveScreenshot:
+    def __init__(self, filename):
+        subprocess.Popen(
+            f"sleep 5 && rm {filename}"
+        )
