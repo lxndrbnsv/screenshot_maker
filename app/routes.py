@@ -3,7 +3,7 @@ import os
 from app import app
 from flask import jsonify, request, send_file, after_this_request
 
-from app.modules.screenshot import MakeScreenshot, CropScreenshot, RemoveScreenshot
+from app.modules.screenshot import MakeScreenshot, CropScreenshot
 
 
 @app.route("/")
@@ -26,4 +26,3 @@ def make_screenshot():
         os.remove(name)
 
     return send_file(f"../{filename}")
-
