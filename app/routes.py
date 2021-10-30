@@ -1,9 +1,7 @@
 import os
-from multiprocessing import Process
-
 
 from app import app
-from flask import jsonify, request, send_file
+from flask import jsonify, request
 
 from app.modules.screenshot import MakeScreenshot, CropScreenshot
 

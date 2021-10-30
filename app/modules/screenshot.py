@@ -1,6 +1,4 @@
 import datetime
-from multiprocessing import Process
-
 
 from PIL import Image
 from selenium import webdriver
